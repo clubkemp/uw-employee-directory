@@ -13,12 +13,8 @@ class Table extends React.Component{
         })
     }
 
-    getUsers =() =>{
-        
-    }
-
-    buildRow = () =>{
-     
+    buildRow =() =>{
+        return this.state.employees.map(e => <Row employee={e} />)
     }
 
     render(){
@@ -34,7 +30,7 @@ class Table extends React.Component{
                     <th>job</th>
                     <th>email</th>
                 </tr>
-                <Row />
+                {this.buildRow()}
                 </tbody>
             </table>
         </div>
