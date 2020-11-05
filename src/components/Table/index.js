@@ -6,7 +6,8 @@ import './style.css'
 class Table extends React.Component{
     state = {
         employees:[],
-        sticky: false
+        sticky: false,
+        nameSort: "desc"
     }
     componentDidMount= () =>{
         axios.get("https://randomuser.me/api/?results=200&nat=us")
@@ -18,9 +19,17 @@ class Table extends React.Component{
     }
 
     buildRow =() =>{
-        const sortedArray = this.state.employees.sort((a, b) => (a.name.last > b.name.last) ? 1 : -1)
+        let sortedArray
+        if(this.state.nameSort === "desc"){
+            sortedArray = this.state.employees.sort((a, b) => (a.name.last > b.name.last) ? 1 : -1)
+        }else if(this.state.nameSort === "asc"){
+            sortedArray = this.state.employees.sort((a, b) => (a.name.last < b.name.last) ? 1 : -1)
+        }
         console.log(sortedArray)
         return sortedArray.map(e => <Row key={e.id.value} employee={e} />)
+    }
+    handleNameSort =() =>{
+        
     }
     handleScroll = () =>{
         // let headerPos = document.querySelector(".header").getBoundingClientRect()
