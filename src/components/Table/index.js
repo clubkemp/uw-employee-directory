@@ -14,7 +14,7 @@ class Table extends React.Component{
     }
 
     buildRow =() =>{
-        return this.state.employees.map(e => <Row employee={e} />)
+        return this.state.employees.map(e => <Row key={e.id.value} employee={e} />)
     }
 
     render(){
@@ -27,7 +27,8 @@ class Table extends React.Component{
                 <tr>
                     <th>Picture</th>
                     <th>name</th>
-                    <th>job</th>
+                    <th>age</th>
+                    <th>cell</th>
                     <th>email</th>
                 </tr>
                 {this.buildRow()}
