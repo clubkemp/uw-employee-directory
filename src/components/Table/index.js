@@ -1,18 +1,40 @@
 import React from 'react'
 import Row from '../Row'
+import axios from 'axios'
 
 class Table extends React.Component{
     state = {
-        thing:"Testing"
+        employees:[]
+    }
+    componentDidMount= () =>{
+        axios.get("https://randomuser.me/api/?results=200&nat=us")
+        .then(res => {
+            this.setState({employees:res.data.results})
+        })
+    }
+
+    getUsers =() =>{
+        
+    }
+
+    buildRow = () =>{
+     
     }
 
     render(){
         return (
         <div className="app">
+            
             <h1 id='title'>React Dynamic Table</h1>
             <table id='students'>
                 <tbody>
-                    <Row />
+                <tr>
+                    <th>Picture</th>
+                    <th>name</th>
+                    <th>job</th>
+                    <th>email</th>
+                </tr>
+                <Row />
                 </tbody>
             </table>
         </div>
