@@ -1,3 +1,4 @@
+import './style.css'
 
 function Row(props) {
     const e = props.employee
