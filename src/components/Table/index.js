@@ -18,7 +18,9 @@ class Table extends React.Component{
     }
 
     buildRow =() =>{
-        return this.state.employees.map(e => <Row key={e.id.value} employee={e} />)
+        const sortedArray = this.state.employees.sort((a, b) => (a.name.last > b.name.last) ? 1 : -1)
+        console.log(sortedArray)
+        return sortedArray.map(e => <Row key={e.id.value} employee={e} />)
     }
     handleScroll = () =>{
         // let headerPos = document.querySelector(".header").getBoundingClientRect()
@@ -42,7 +44,7 @@ class Table extends React.Component{
                 <tbody>
                 <tr className={this.state.sticky ? "header sticky" : "header"}>
                     <th>Picture</th>
-                    <th>name</th>
+                    <th>name<span><a><i class="arrow down" /></a></span></th>
                     <th>age</th>
                     <th>cell</th>
                     <th>email</th>
