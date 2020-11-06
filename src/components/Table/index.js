@@ -7,7 +7,7 @@ class Table extends React.Component{
     state = {
         employees:[],
         sticky: false,
-        nameSort: "desc"
+        nameSort: "arrow down"
     }
     componentDidMount= () =>{
         axios.get("https://randomuser.me/api/?results=200&nat=us")
@@ -20,16 +20,17 @@ class Table extends React.Component{
 
     buildRow =() =>{
         let sortedArray
-        if(this.state.nameSort === "desc"){
+        if(this.state.nameSort === "arrow down"){
             sortedArray = this.state.employees.sort((a, b) => (a.name.last > b.name.last) ? 1 : -1)
-        }else if(this.state.nameSort === "asc"){
+        }else if(this.state.nameSort === "arrow up"){
             sortedArray = this.state.employees.sort((a, b) => (a.name.last < b.name.last) ? 1 : -1)
         }
         console.log(sortedArray)
         return sortedArray.map(e => <Row key={e.id.value} employee={e} />)
     }
     handleNameSort =() =>{
-        
+        this.state.nameSort ==="arrow down"? this.setState({nameSort:"arrow up"}) : this.setState({nameSort:"arrow down"})
+        this.buildRow();
     }
     handleScroll = () =>{
         // let headerPos = document.querySelector(".header").getBoundingClientRect()
@@ -53,7 +54,7 @@ class Table extends React.Component{
                 <tbody>
                 <tr className={this.state.sticky ? "header sticky" : "header"}>
                     <th>Picture</th>
-                    <th>name<span><a><i class="arrow down" /></a></span></th>
+                    <th>name<span><i class={this.state.nameSort} onClick={this.handleNameSort} /></span></th>
                     <th>age</th>
                     <th>cell</th>
                     <th>email</th>
