@@ -1,7 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
 import Table from './components/Table/index'
-
+import './app.css'
 
 function App() {
   return <Table />
